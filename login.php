@@ -18,6 +18,7 @@
         <input type="password" name="pass" id="pass" class="form-control w-25">
 
         <button type="submit" class="btn btn-primary w-25 mt-4">Entrar</button>
+        <a href="index.php" class="btn btn-outline-secondary w-25 d-block mt-2">Voltar</a>
     </form>
 </body>
 </html>

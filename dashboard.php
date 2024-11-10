@@ -13,17 +13,17 @@ require "actions/read.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
-    <header>
+<body class="container py-3">
+    <header class="d-flex justify-content-between align-items-center">
         <h1>Produtos</h1>
 
         <div>
-            <a href="adicionar.php">Adicionar produtos</a>
-            <a href="auth/logout.php">Sair</a>
+            <a href="adicionar.php" class="btn btn-primary">Adicionar produto</a>
+            <a href="auth/logout.php" class="btn btn-danger">Sair</a>
         </div>
     </header>
 
-    <table border="1">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -38,6 +38,11 @@ require "actions/read.php";
 
         <tbody>
             <?php
+            if (count($roupas) == 0) {
+                echo "<tr>";
+                echo "<td colspan='7' class='text-center text-danger fw-medium'>Nenhum produto cadastrado</td>";
+                echo "</tr>";
+            }
             foreach ($roupas as $roupa) {
                 $id = $roupa["id"];
                 $tipo = $roupa["tipo"];
@@ -45,6 +50,7 @@ require "actions/read.php";
                 $tamanho = $roupa["tamanho"];
                 $cor = $roupa["cor"];
                 $preco = $roupa["preco"];
+                $preco = number_format($preco, 2, ',', '.');
 
                 echo "<tr>";
                 echo "<td>$id</td>";
@@ -52,10 +58,10 @@ require "actions/read.php";
                 echo "<td>$marca</td>";
                 echo "<td>$tamanho</td>";
                 echo "<td>$cor</td>";
-                echo "<td>$preco</td>";
+                echo "<td>R$ $preco</td>";
                 echo "<td>";
-                echo "<a href='editar.php?id=$id'>Editar</a>";
-                echo "<a href='actions/delete.php?id=$id'>Apagar</a>";
+                echo "<a href='editar.php?id=$id' class='btn btn-sm btn-warning me-2'>Editar</a>";
+                echo "<a href='actions/delete.php?id=$id' class='btn btn-sm btn-danger'>Apagar</a>";
                 echo "</td>";
                 echo "</tr>";
             }
